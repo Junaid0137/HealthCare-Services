@@ -1,5 +1,5 @@
 'use client';
-import React, { FormEvent, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { motion } from "framer-motion"
@@ -33,7 +33,7 @@ function HomePage() {
 
     const [editServiceId, setEditServiceId] = useState(null);
 
-    const handleInputChange = (e: FormEvent) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
             ...prevData,
@@ -41,7 +41,7 @@ function HomePage() {
         }));
     };
 
-    const handleAddService = (e: FormEvent) => {
+    const handleAddService = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         if (!formData.name || !formData.description || !formData.price) {
             alert('All fields are required!');
