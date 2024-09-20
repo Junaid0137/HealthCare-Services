@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { motion } from "framer-motion"
@@ -33,7 +33,7 @@ function HomePage() {
 
     const [editServiceId, setEditServiceId] = useState(null);
 
-    const handleInputChange = (e) => {
+    const handleInputChange = (e: FormEvent) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
             ...prevData,
@@ -41,7 +41,7 @@ function HomePage() {
         }));
     };
 
-    const handleAddService = (e) => {
+    const handleAddService = (e: FormEvent) => {
         e.preventDefault();
         if (!formData.name || !formData.description || !formData.price) {
             alert('All fields are required!');
@@ -77,13 +77,13 @@ function HomePage() {
     const [aIsOpen, setAIsOpen] = useState(false);
 
 
-    const handleEditService = (id) => {
+    const handleEditService = (id: number) => {
         const serviceToEdit = services.find((service) => service.id === id);
         setFormData({ ...serviceToEdit });
         setEditServiceId(id);
     };
 
-    const handleDeleteService = (id) => {
+    const handleDeleteService = (id: number) => {
         setServices((prev) => prev.filter((service) => service.id !== id));
         setIsOpen(false)
         toast.success('Service Deleted')
